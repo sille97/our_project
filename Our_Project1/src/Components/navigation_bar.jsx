@@ -1,44 +1,36 @@
-// src/components/Navbar.jsx
-import React from "react";
+import React, { useState } from "react";
 import { GoHomeFill } from "react-icons/go";
 import { GrMapLocation } from "react-icons/gr";
 import { IoPersonSharp } from "react-icons/io5";
+import "../styles/navbar.css";
 
 export default function Navbar() {
+  const [active, setActive] = useState("home");
+
   return (
-    <nav style={styles.nav}>
-      <ul style={styles.links}>
-        <li>
-          <a href="/">
-            <GoHomeFill size={22} color="white" />
-          </a>
+    <nav className="navbar">
+      <ul className="navbar-list">
+        <li
+          className={`navbar-item ${active === "home" ? "active" : ""}`}
+          onClick={() => setActive("home")}
+        >
+          <GoHomeFill size={24} />
         </li>
-        <li>
-          <a href="/about">
-            <GrMapLocation size={22} color="white" />
-          </a>
+
+        <li
+          className={`navbar-item ${active === "map" ? "active" : ""}`}
+          onClick={() => setActive("map")}
+        >
+          <GrMapLocation size={22} />
         </li>
-        <li>
-          <a href="/contact">
-            <IoPersonSharp size={22} color="white" />
-          </a>
+
+        <li
+          className={`navbar-item ${active === "profile" ? "active" : ""}`}
+          onClick={() => setActive("profile")}
+        >
+          <IoPersonSharp size={24} />
         </li>
       </ul>
     </nav>
   );
 }
-
-const styles = {
-  nav: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    padding: "1rem 2rem",
-    backgroundColor: "#19306E",
-  },
-  links: {
-    listStyle: "none",
-    display: "flex",
-    gap: "2rem",
-  },
-};
